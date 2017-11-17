@@ -1,0 +1,14 @@
+{
+  "name": "compose-nginx-ets",
+  "version": "1.0.0",
+  "description": "Demo using Docker Compose with the ESI Test Server and third-party akamai-nginx module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akamai Technologies, Inc.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "akamai-nginx": "^3.16.0"
+  }
+}

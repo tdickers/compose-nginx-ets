@@ -1,0 +1,60 @@
+{
+  "accountId": "",
+  "contractId": "",
+  "groupId": "",
+  "propertyId": "",
+  "propertyName": "customer_origin",
+  "propertyVersion": 1,
+  "etag": "9f38b76761201c82ca4a91b8f170d7d64f09b337",
+  "rules": {
+    "name": "default",
+    "children": [],
+    "behaviors": [
+      {
+        "name": "origin",
+        "options": {
+          "cacheKeyHostname": "ORIGIN_HOSTNAME",
+          "compress": true,
+          "enableTrueClientIp": false,
+          "forwardHostHeader": "REQUEST_HOST_HEADER",
+          "httpPort": 80,
+          "originType": "CUSTOMER",
+          "hostname": "{{user.PMUSER_ORIGIN_HOSTNAME}}",
+          "originCertificate": "",
+          "verificationMode": "PLATFORM_SETTINGS",
+          "ports": "",
+          "httpsPort": 443,
+          "originSni": false
+        }
+      },
+      {
+        "name": "cpCode",
+        "options": {
+          "value": {
+            "id": 123456,
+            "description": "customer_origin",
+            "products": [],
+            "createdDate": 1510961829000,
+            "name": "customer_origin"
+          }
+        }
+      }
+    ],
+    "options": {
+      "is_secure": true
+    },
+    "variables": [
+      {
+        "name": "PMUSER_ORIGIN_HOSTNAME",
+        "value": "www.example.com",
+        "description": "",
+        "hidden": false,
+        "sensitive": false
+      }
+    ],
+    "comments":
+      "The behaviors in the Default Rule apply to all requests for the property hostname(s) unless another rule overrides the Default Rule settings."
+  },
+  "warnings": [],
+  "ruleFormat": "latest"
+}

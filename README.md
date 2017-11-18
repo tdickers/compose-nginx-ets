@@ -1,6 +1,10 @@
 Demo using Docker Compose with the ESI Test Server and the third-party
 `akamai-nginx` NPM module.
 
+# Setup
+* You must have Docker and Docker Compose installed.
+* Run `npm install`
+
 # Usage
 Running: `./generate-config.js && ./generate-certs.sh && docker-compose up`
 

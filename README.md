@@ -11,6 +11,7 @@ Running: `./generate-config.js && ./generate-certs.sh && docker-compose up`
 Testing: 
 * HTTP: `curl -v -H 'Host: www.site.test' 'http://localhost:8080/loop.html?sym=AKAM&sym=EMC&sym=MSFT'`
 * HTTPS: `curl -k -v -H 'Host: www.site.test' 'https://localhost:8443/loop.html?sym=AKAM&sym=EMC&sym=MSFT'`
+* Caching: `curl -k -v -H 'Host: www.site.test' 'https://localhost:8443/cacheme.html'`
 
 # Disclaimer
 [akamai-nginx](https://github.com/wyvern8/akamai-nginx) is a third-party

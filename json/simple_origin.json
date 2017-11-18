@@ -8,7 +8,33 @@
   "etag": "9f38b76761201c82ca4a91b8f170d7d64f09b337",
   "rules": {
     "name": "default",
-    "children": [],
+    "children": [
+      {
+        "behaviors": [
+          {
+            "name": "caching",
+            "options": {
+              "behavior": "MAX_AGE",
+              "mustRevalidate": false,
+              "ttl": "3600s"
+            }
+          }
+        ],
+        "children": [],
+        "criteria": [
+          {
+            "name": "filename",
+            "options": {
+              "matchCaseSensitive": true,
+              "matchOperator": "IS_ONE_OF",
+              "values": ["cacheme.html"]
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all",
+        "name": "Caching"
+      }
+    ],
     "behaviors": [
       {
         "name": "origin",
@@ -46,7 +72,7 @@
     "variables": [
       {
         "name": "PMUSER_ORIGIN_HOSTNAME",
-        "value": "www.example.com",
+        "value": "www.site.test",
         "description": "",
         "hidden": false,
         "sensitive": false

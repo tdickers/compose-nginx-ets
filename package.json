@@ -14,5 +14,12 @@
     "akamai-nginx": "^3.16.0",
     "snyk": "^1.42.7"
   },
-  "snyk": true
+  "snyk": true,
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
 }

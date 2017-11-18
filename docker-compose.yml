@@ -1,0 +1,61 @@
+version: '2'
+services:
+  edge:
+    restart: always
+    image: openresty/openresty:trusty
+    dns:
+      - 8.8.8.8
+    links:
+      - akamai
+    ports:
+      - "8080:80"
+      - "8443:443"
+    privileged: false
+    volumes:
+      - ./lua/:/usr/local/openresty/nginx/conf/lua
+      - ./ssl/:/usr/local/openresty/nginx/conf/ssl
+      - ./cache/:/usr/local/openresty/nginx/cache
+      - ./node_modules/akamai-nginx/nginx-conf/nginx-edge.conf:/usr/local/openresty/nginx/conf/nginx.conf
+
+  akamai:
+    restart: always
+    image: openresty/openresty:trusty
+    dns:
+      - 8.8.8.8
+    links:
+      - ets:www.site.test
+    ports:
+      - 80
+      - 443
+    privileged: false
+    volumes:
+      - ./lua/:/usr/local/openresty/nginx/conf/lua
+      - ./ssl/:/usr/local/openresty/nginx/conf/ssl
+      - ./config/nginx-akamai.conf:/usr/local/openresty/nginx/conf/nginx.conf
+
+  ets:
+    restart: always
+    image: "akamaiesi/ets-docker:6.0.0.8"
+    environment:
+      - ETS_CLI_ARGS=--remote_origin www.site.test # --debug www.site.test
+    links:
+      - origin:www.site.test
+    logging: # suppress stdout
+      driver: "none"
+    ports:
+      - 80
+
+  origin:
+    restart: always
+    image: openresty/openresty:trusty
+    dns:
+      - 8.8.8.8
+    ports:
+      - 80
+      - 443
+    privileged: false
+    volumes:
+      - ./lua/:/usr/local/openresty/nginx/conf/lua
+      - ./ssl/:/usr/local/openresty/nginx/conf/ssl
+      - ./config/nginx-origin.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./esi:/usr/local/openresty/nginx/html
